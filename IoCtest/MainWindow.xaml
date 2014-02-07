@@ -13,7 +13,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Text="TextBox" AcceptsReturn="True"  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"/>
-        <Button Grid.Row="1" Content="Write to memo" Command="{Binding MyClick}" Height="30" VerticalAlignment="Bottom"></Button>
+        <TextBox x:Name="OhDear" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Text="TextBox" AcceptsReturn="True"  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"/>
+        <Button Grid.Row="1" Content="Write to memo" Command="{Binding MyClick}" CommandParameter="{Binding ElementName=OhDear}" Height="30" VerticalAlignment="Bottom"></Button>
     </Grid>
 </Window>

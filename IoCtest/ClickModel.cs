@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace IoCtest
@@ -21,6 +22,10 @@ namespace IoCtest
 
     public void ShowMessage(object obj)
     {
+      obj.GetType();
+      TextBox aaa = new TextBox();
+      aaa = (TextBox)obj;
+      aaa.Text = "fasd";
       MessageBox.Show("test");
     }
 
