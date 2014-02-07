@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace IoCtest
 {
@@ -11,13 +12,15 @@ namespace IoCtest
     void Write(string content);
   }
 
-  public class MemoOutput : IOutput
+  public class TextBoxOutput : IOutput
   {
+
+    public TextBox _textBox;
 
     public void Write(string content)
     {
       //write to memo
-      throw new NotImplementedException();
+      _textBox.Text = content;
     }
   }
 
@@ -26,7 +29,7 @@ namespace IoCtest
     public void Write(string content)
     {
       //write to console
-      throw new NotImplementedException();
+      Console.WriteLine(content);
     }
   }
 
