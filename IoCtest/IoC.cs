@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace IoCtest
 {
   public interface IOutput
   {
-    void Write(string content);
+    void Write(string content, object obj);
   }
 
   public class ConsoleOutput : IOutput
   {
-    public void Write(string content)
+    public void Write(string content, object obj)
     {
-      Console.WriteLine(content);
+      var ioCmessageDisplayTextBox = (TextBox)obj;
+      ioCmessageDisplayTextBox.Text = "Hello world! It is: " + content;
     }
   }
 
@@ -35,9 +32,8 @@ namespace IoCtest
 
     public void WriteDate(object obj)
     {
-      var ioCmessageDisplayTextBox = (TextBox)obj;
-      ioCmessageDisplayTextBox.Text = "Hello world!";
-      this._output.Write(DateTime.Today.ToShortDateString());
+
+      this._output.Write(DateTime.Today.ToShortDateString(), obj);
     }
   }
 }
