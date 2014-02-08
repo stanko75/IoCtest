@@ -12,29 +12,32 @@ namespace IoCtest
     void Write(string content);
   }
 
-  public class TextBoxOutput : IOutput
-  {
-
-    public TextBox _textBox;
-
-    public void Write(string content)
-    {
-      //write to memo
-      _textBox.Text = content;
-    }
-  }
-
   public class ConsoleOutput : IOutput
   {
     public void Write(string content)
     {
-      //write to console
       Console.WriteLine(content);
     }
   }
 
-  class IoC
+  public interface IDateWriter
   {
+    void WriteDate(object obj);
+  }
 
+  public class TodayWriter : IDateWriter
+  {
+    private IOutput _output;
+    public TodayWriter(IOutput output)
+    {
+      this._output = output;
+    }
+
+    public void WriteDate(object obj)
+    {
+      var ioCmessageDisplayTextBox = (TextBox)obj;
+      ioCmessageDisplayTextBox.Text = "Hello world!";
+      this._output.Write(DateTime.Today.ToShortDateString());
+    }
   }
 }
