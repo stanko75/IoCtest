@@ -22,11 +22,9 @@ namespace IoCtest
 
     public void ShowMessage(object obj)
     {
-      obj.GetType();
-      TextBox aaa = new TextBox();
-      aaa = (TextBox)obj;
-      aaa.Text = "fasd";
-      MessageBox.Show("test");
+      TextBox IoCmessageDisplayTextBox = new TextBox();
+      IoCmessageDisplayTextBox = (TextBox)obj;
+      IoCmessageDisplayTextBox.Text = "Hello world!";
     }
 
     public ClickModel()
