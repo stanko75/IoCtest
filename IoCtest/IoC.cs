@@ -1,39 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace IoCtest
 {
   public interface IOutput
   {
-    void Write(string content, object obj);
+    void Write(string content);
+  }
+
+  public class TextBoxOutput : IOutput
+  {
+
+    public TextBox _textBox;
+
+    public void Write(string content)
+    {
+      //write to memo
+      _textBox.Text = content;
+    }
   }
 
   public class ConsoleOutput : IOutput
   {
-    public void Write(string content, object obj)
+    public void Write(string content)
     {
-      var ioCmessageDisplayTextBox = (TextBox)obj;
-      ioCmessageDisplayTextBox.Text = "Hello world! It is: " + content;
+      //write to console
+      Console.WriteLine(content);
     }
   }
 
-  public interface IDateWriter
+  class IoC
   {
-    void WriteDate(object obj);
-  }
 
-  public class TodayWriter : IDateWriter
-  {
-    private IOutput _output;
-    public TodayWriter(IOutput output)
-    {
-      this._output = output;
-    }
-
-    public void WriteDate(object obj)
-    {
-
-      this._output.Write(DateTime.Today.ToShortDateString(), obj);
-    }
   }
 }
