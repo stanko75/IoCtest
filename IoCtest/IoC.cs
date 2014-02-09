@@ -18,32 +18,20 @@ namespace IoCtest
     }
   }
 
-  public class TextBoxOutputToShowMessage : IOutput
+  public class ShowMessageOutput : IOutput
   {
     public void Write(string content, object obj)
     {
       MessageBox.Show("Hello world! It is: " + content);
     }
   }
-  public class ShowMessageOutput : IOutput
-  {
-    public void Write(string content, object obj)
-    {
-      MessageBox.Show(content);
-    }
-  }
 
-  public interface IDateWriterToTextBox
+  public interface IDateWriter
   {
     void WriteDate(object obj);
   }
 
-  public interface IDateWriterToShowMessage
-  {
-    void WriteDate(object obj);
-  }
-
-  public class TodayWriterToShowMessage : IDateWriterToShowMessage
+  public class TodayWriterToShowMessage : IDateWriter
   {
     private IOutput _output;
     public TodayWriterToShowMessage(IOutput output)
@@ -57,7 +45,7 @@ namespace IoCtest
     }
   }
 
-  public class TodayWriter : IDateWriterToTextBox
+  public class TodayWriter : IDateWriter
   {
     private IOutput _output;
     public TodayWriter(IOutput output)

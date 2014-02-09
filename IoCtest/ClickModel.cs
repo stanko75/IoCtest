@@ -16,7 +16,7 @@ namespace IoCtest
 
       using (var scope = MainWindow.Container.BeginLifetimeScope())
       {
-        var writer = scope.Resolve<IDateWriterToTextBox>();
+        var writer = scope.Resolve<IDateWriter>();
         writer.WriteDate(obj);
       }
     }
@@ -26,7 +26,7 @@ namespace IoCtest
 
       using (var scope = MainWindow.Container.BeginLifetimeScope())
       {
-        var writer = scope.Resolve<IDateWriterToShowMessage>();
+        var writer = scope.Resolve<IDateWriter>();
         writer.WriteDate(obj);
       }
     }
@@ -35,7 +35,7 @@ namespace IoCtest
     {
       var builder = new ContainerBuilder();
       builder.RegisterType<TextBoxOutput>().As<IOutput>();
-      builder.RegisterType<TodayWriter>().As<IDateWriterToTextBox>();
+      builder.RegisterType<TodayWriter>().As<IDateWriter>();
       builder.Update(MainWindow.Container);
       WriteDate(obj);
     }
@@ -44,7 +44,7 @@ namespace IoCtest
     {
       var builder = new ContainerBuilder();
       builder.RegisterType<ShowMessageOutput>().As<IOutput>();
-      builder.RegisterType<TodayWriterToShowMessage>().As<IDateWriterToShowMessage>();
+      builder.RegisterType<TodayWriterToShowMessage>().As<IDateWriter>();
       builder.Update(MainWindow.Container);
       MyWriteDate(obj);
     }
