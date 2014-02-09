@@ -31,20 +31,6 @@ namespace IoCtest
     void WriteDate(object obj);
   }
 
-  public class TodayWriterToShowMessage : IDateWriter
-  {
-    private IOutput _output;
-    public TodayWriterToShowMessage(IOutput output)
-    {
-      this._output = output;
-    }
-
-    public void WriteDate(object obj)
-    {
-      this._output.Write(DateTime.Today.ToShortDateString(), obj);
-    }
-  }
-
   public class TodayWriter : IDateWriter
   {
     private IOutput _output;

@@ -18,7 +18,6 @@ namespace IoCtest
       }
     }
 
-
     public void TextBoxOutputMessage(object obj)
     {
       var builder = new ContainerBuilder();
@@ -32,7 +31,7 @@ namespace IoCtest
     {
       var builder = new ContainerBuilder();
       builder.RegisterType<ShowMessageOutput>().As<IOutput>();
-      builder.RegisterType<TodayWriterToShowMessage>().As<IDateWriter>();
+      builder.RegisterType<TodayWriter>().As<IDateWriter>();
       builder.Update(MainWindow.Container);
       WriteDate(obj);
     }
