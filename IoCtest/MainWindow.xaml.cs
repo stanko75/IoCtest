@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Autofac;
+using Autofac.Core;
 
 namespace IoCtest
 {
@@ -20,9 +22,15 @@ namespace IoCtest
   /// </summary>
   public partial class MainWindow : Window
   {
+    public static IContainer Container { get; set; }
     public MainWindow()
     {
       InitializeComponent();
+
+      var builder = new ContainerBuilder();
+      builder.RegisterType<ConsoleOutput>().As<IOutput>();
+      builder.RegisterType<TodayWriter>().As<IDateWriter>();
+      Container = builder.Build();
     }
   }
 }
