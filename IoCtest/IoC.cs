@@ -32,7 +32,7 @@ namespace IoCtest
 
     public void WriteDate(object obj)
     {
-      this._output.Write(DateTime.Today.ToShortDateString(), obj);
+      _output.Write(DateTime.Today.ToShortDateString(), obj);
     }
   }
 }
