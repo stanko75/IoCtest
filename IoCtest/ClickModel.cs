@@ -6,28 +6,25 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Autofac;
-using Autofac.Core;
 
 namespace IoCtest
 {
   public class ClickModel
   {
-    public ICommand MyClick { get; set; }
 
-    public static void WriteDate(object obj)
+    private ICommand _buttonCommand;
+
+    public ICommand MyClick
     {
-
-      using (var scope = MainWindow.Container.BeginLifetimeScope())
-      {
-        var writer = scope.Resolve<IDateWriter>();
-        writer.WriteDate(obj);
-      }
+      get { return _buttonCommand; }
+      set { _buttonCommand = value; }
     }
 
     public void ShowMessage(object obj)
     {
-      WriteDate(obj);
+      TextBox IoCmessageDisplayTextBox = new TextBox();
+      IoCmessageDisplayTextBox = (TextBox)obj;
+      IoCmessageDisplayTextBox.Text = "Hello world!";
     }
 
     public ClickModel()
