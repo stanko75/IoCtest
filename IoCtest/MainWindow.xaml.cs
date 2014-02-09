@@ -28,8 +28,9 @@ namespace IoCtest
       InitializeComponent();
 
       var builder = new ContainerBuilder();
-      builder.RegisterType<ConsoleOutput>().As<IOutput>();
-      builder.RegisterType<TodayWriter>().As<IDateWriter>();
+      builder.RegisterType<TextBoxOutput>().As<IOutput>();
+      builder.RegisterType<TodayWriter>().As<IDateWriterToTextBox>();
+
       Container = builder.Build();
     }
   }

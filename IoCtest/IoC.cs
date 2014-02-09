@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace IoCtest
@@ -8,7 +9,7 @@ namespace IoCtest
     void Write(string content, object obj);
   }
 
-  public class ConsoleOutput : IOutput
+  public class TextBoxOutput : IOutput
   {
     public void Write(string content, object obj)
     {
@@ -17,12 +18,46 @@ namespace IoCtest
     }
   }
 
-  public interface IDateWriter
+  public class TextBoxOutputToShowMessage : IOutput
+  {
+    public void Write(string content, object obj)
+    {
+      MessageBox.Show("Hello world! It is: " + content);
+    }
+  }
+  public class ShowMessageOutput : IOutput
+  {
+    public void Write(string content, object obj)
+    {
+      MessageBox.Show(content);
+    }
+  }
+
+  public interface IDateWriterToTextBox
   {
     void WriteDate(object obj);
   }
 
-  public class TodayWriter : IDateWriter
+  public interface IDateWriterToShowMessage
+  {
+    void WriteDate(object obj);
+  }
+
+  public class TodayWriterToShowMessage : IDateWriterToShowMessage
+  {
+    private IOutput _output;
+    public TodayWriterToShowMessage(IOutput output)
+    {
+      this._output = output;
+    }
+
+    public void WriteDate(object obj)
+    {
+      this._output.Write(DateTime.Today.ToShortDateString(), obj);
+    }
+  }
+
+  public class TodayWriter : IDateWriterToTextBox
   {
     private IOutput _output;
     public TodayWriter(IOutput output)
@@ -32,7 +67,6 @@ namespace IoCtest
 
     public void WriteDate(object obj)
     {
-
       this._output.Write(DateTime.Today.ToShortDateString(), obj);
     }
   }
