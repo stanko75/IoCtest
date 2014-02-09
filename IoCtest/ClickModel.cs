@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Net.Mime;
 using System.Windows.Input;
 using Autofac;
-using Autofac.Core;
 
 namespace IoCtest
 {
@@ -13,7 +11,6 @@ namespace IoCtest
 
     public static void WriteDate(object obj)
     {
-
       using (var scope = MainWindow.Container.BeginLifetimeScope())
       {
         var writer = scope.Resolve<IDateWriter>();
@@ -21,15 +18,6 @@ namespace IoCtest
       }
     }
 
-    public static void MyWriteDate(object obj)
-    {
-
-      using (var scope = MainWindow.Container.BeginLifetimeScope())
-      {
-        var writer = scope.Resolve<IDateWriter>();
-        writer.WriteDate(obj);
-      }
-    }
 
     public void TextBoxOutputMessage(object obj)
     {
@@ -46,7 +34,7 @@ namespace IoCtest
       builder.RegisterType<ShowMessageOutput>().As<IOutput>();
       builder.RegisterType<TodayWriterToShowMessage>().As<IDateWriter>();
       builder.Update(MainWindow.Container);
-      MyWriteDate(obj);
+      WriteDate(obj);
     }
 
     public ClickModel()
