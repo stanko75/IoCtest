@@ -9,23 +9,6 @@ namespace IoCtest
     void Write(string content, object obj);
   }
 
-  public class TextBoxOutput : IOutput
-  {
-    public void Write(string content, object obj)
-    {
-      var ioCmessageDisplayTextBox = (TextBox)obj;
-      ioCmessageDisplayTextBox.Text = "Hello world! It is: " + content;
-    }
-  }
-
-  public class ShowMessageOutput : IOutput
-  {
-    public void Write(string content, object obj)
-    {
-      MessageBox.Show("Hello world! It is: " + content);
-    }
-  }
-
   public interface IDateWriter
   {
     void WriteDate(object obj);
@@ -42,6 +25,23 @@ namespace IoCtest
     public void WriteDate(object obj)
     {
       this._output.Write(DateTime.Today.ToShortDateString(), obj);
+    }
+  }
+
+  public class TextBoxOutput : IOutput
+  {
+    public void Write(string content, object obj)
+    {
+      var ioCmessageDisplayTextBox = (TextBox)obj;
+      ioCmessageDisplayTextBox.Text = "Hello world! It is: " + content;
+    }
+  }
+
+  public class ShowMessageOutput : IOutput
+  {
+    public void Write(string content, object obj)
+    {
+      MessageBox.Show("Hello world! It is: " + content);
     }
   }
 }
