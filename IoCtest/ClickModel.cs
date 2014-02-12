@@ -22,7 +22,6 @@ namespace IoCtest
     {
       var builder = new ContainerBuilder();
       builder.RegisterType<TextBoxOutput>().As<IOutput>();
-      builder.RegisterType<TodayWriter>().As<IDateWriter>();
       builder.Update(MainWindow.Container);
       WriteDate(obj);
     }
@@ -31,7 +30,6 @@ namespace IoCtest
     {
       var builder = new ContainerBuilder();
       builder.RegisterType<ShowMessageOutput>().As<IOutput>();
-      builder.RegisterType<TodayWriter>().As<IDateWriter>();
       builder.Update(MainWindow.Container);
       WriteDate(obj);
     }

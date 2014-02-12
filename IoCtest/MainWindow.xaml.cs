@@ -14,6 +14,7 @@ namespace IoCtest
       InitializeComponent();
 
       var builder = new ContainerBuilder();
+      builder.RegisterType<TodayWriter>().As<IDateWriter>();
       Container = builder.Build();
     }
   }
